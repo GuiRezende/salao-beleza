@@ -1,0 +1,18 @@
+{
+  "_id": 201,
+  "status": "realizado",
+  "dataHoraSolicitacao": "2025-07-15 08:45:00",
+  "cliente": {
+    "_id": "77777777777",
+    "nome": "Gabriela Martins",
+    "telefone": "77-9999-1001"
+  },
+  "servicos": [
+    {
+      "_id": 1,
+      "nomeTipo": "Corte",
+      "tempoDuracao": "00:30:00",
+      "custoServico": 30.00
+    }
+  ]
+}

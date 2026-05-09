@@ -1,0 +1,30 @@
+{
+  "_id": 501,
+  "status": "realizado",
+  "dataHorarioInicial": "2025-07-15 09:00:00",
+  "dataHorarioFinal": "2025-07-15 09:50:00",
+  "dataSolicitacao": "2025-07-10",
+  "valorTotal": 55.00,
+  "codPagamento": 5,
+  "formaPagamento": "CARTAO",
+  "cliente": {
+    "_id": "77777777777",
+    "nome": "Gabriela Martins",
+    "telefone": "77-9999-1001"
+  },
+  "servicos": [
+    {
+      "tempoDuracao": "00:50:00",
+      "servicos": {
+        "_id": 1,
+        "nomeTipo": "Corte",
+        "custoServico": 30.00
+      },
+      "profissional": {
+        "_id": "11111111111",
+        "nome": "Ana Silva",
+        "telefone": "77-98888-0001"
+      }
+    }
+  ]
+}
