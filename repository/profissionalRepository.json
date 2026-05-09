@@ -1,0 +1,14 @@
+{
+  "_id": "11111111111",
+  "salario": 2500.00,
+  "endereco": "Rua A, Centro, Vit�ria da Conquista",
+  "telefone": "77-98888-0001",
+  "especializacao": "Corte",
+  "nome": "Ana Silva",
+  "servicosHabilitados": [
+    {
+      "_id": 1,
+      "nomeTipo": "Corte"
+    }
+  ]
+}
