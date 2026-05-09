@@ -1,6 +1,8 @@
 const fs = require("fs")
 
-function getAll() {}
+function getAll() {
+    return JSON.parse(fs.readFileSync("./repository/clienteRepository.json"))
+}
 
 function getClienteById(id) {}
 
