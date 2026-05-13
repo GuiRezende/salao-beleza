@@ -22,9 +22,24 @@ function getCliente(req, res) {
 }
 
 function postCliente(req, res) {
+    try {
+        const body = req.body
+        insertCliente(body)
+        res.send("Cliente inserido com sucesso")
+    } catch (error) {
+        res.status(500)
+        res.send("ERRO AO INSERIR CLIENTE: " + error.message)
+    }
 }
 
 function patchCliente(req, res) {
+    try {
+        updateCliente(req.body, req.params.id)
+        res.send("Cliente atualizado com sucesso")
+    } catch (error) {
+        res.status(500)
+        res.send("ERRO AO ATUALIZAR CLIENTE: " + error.message)
+    }
 }
 
 function deleteCliente(req, res) {

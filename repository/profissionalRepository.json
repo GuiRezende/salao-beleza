@@ -1,14 +1,34 @@
-{
-  "_id": "11111111111",
-  "salario": 2500.00,
-  "endereco": "Rua A, Centro, Vit�ria da Conquista",
-  "telefone": "77-98888-0001",
-  "especializacao": "Corte",
-  "nome": "Ana Silva",
-  "servicosHabilitados": [
-    {
-      "_id": 1,
-      "nomeTipo": "Corte"
-    }
-  ]
-}
+[
+  {
+    "_id": "41111111111",
+    "salario": 2500,
+    "endereco": "Rua A, Centro, Vit�ria da Conquista",
+    "telefone": "77-98888-0001",
+    "especializacao": "Corte",
+    "nome": "Ana Silva",
+    "servicosHabilitados": [
+      {
+        "_id": 1,
+        "nomeTipo": "Corte"
+      },
+      {
+        "_id": 10,
+        "nomeTipo": "Barba"
+      }
+    ]
+  },
+  {
+    "_id": "11111111113",
+    "salario": 2500,
+    "endereco": "Rua A, Centro, Vit�ria da Conquista",
+    "telefone": "77-98888-0001",
+    "especializacao": "Corte",
+    "nome": "Ana Silva",
+    "servicosHabilitados": [
+      {
+        "_id": 1,
+        "nomeTipo": "Corte"
+      }
+    ]
+  }
+]

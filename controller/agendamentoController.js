@@ -12,8 +12,7 @@ function getAgendamentos(req, res) {
 
 function getAgendamento(req, res) {
     try {
-        const id = req.params.id
-        const agendamento = getAgendamentoById(id)
+        const agendamento = getAgendamentoById(req.params.id)
         res.send(agendamento)
     } catch (error) {
         res.status(500)
@@ -22,15 +21,28 @@ function getAgendamento(req, res) {
 }
 
 function postAgendamento(req, res) {
+    try {
+        insertAgendamento(req.body)
+        res.send("Agendamento inserido com sucesso")
+    } catch (error) {
+        res.status(500)
+        res.send("ERRO AO INSERIR AGENDAMENTO: " + error.message)
+    }
 }
 
 function patchAgendamento(req, res) {
+    try {
+        updateAgendamento(req.body, req.params.id)
+        res.send("Agendamento atualizado com sucesso")
+    } catch (error) {
+        res.status(500)
+        res.send("ERRO AO ATUALIZAR AGENDAMENTO: " + error.message)
+    }
 }
 
 function deleteAgendamento(req, res) {
     try {
-        const id = req.params.id
-        deleteById(id)
+        deleteById(req.params.id)
         res.send("Agendamento deletado com sucesso")
     } catch (error) {
         res.status(500)

@@ -1,6 +1,38 @@
-{
-  "_id": 1,
-  "nomeTipo": "Corte",
-  "custoServico": 30.00,
-  "tempoDuracao": "00:30:00"
-}
+[
+  {
+    "_id": 1,
+    "nomeTipo": "Corte",
+    "custoServico": 30,
+    "tempoDuracao": "00:30:00"
+  },
+  {
+    "_id": 2,
+    "nomeTipo": "Tintura",
+    "custoServico": 30,
+    "tempoDuracao": "00:30:00"
+  },
+  {
+    "_id": 4,
+    "nomeTipo": "Chapinha",
+    "custoServico": 30,
+    "tempoDuracao": "00:30:00"
+  },
+  {
+    "_id": 5,
+    "nomeTipo": "Unha",
+    "custoServico": 30,
+    "tempoDuracao": "00:30:00"
+  },
+  {
+    "_id": 10,
+    "nomeTipo": "Barba",
+    "custoServico": 30,
+    "tempoDuracao": "00:30:00"
+  },
+  {
+    "_id": 11,
+    "nomeTipo": "Tintura degrade",
+    "custoServico": 300,
+    "tempoDuracao": "00:30:00"
+  }
+]

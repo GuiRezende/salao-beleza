@@ -7,17 +7,30 @@ function getAll() {
 
 function getProfissionalById(id) {
     const profissionais = getAll()
-    return profissionais.filter(profissional => profissional._id === Number(id));
+    return profissionais.filter(profissional => profissional._id === id);
 }
 
-function insertProfissional(profissional) {}
+function insertProfissional(profissional) {
+    const todosProfissionais = getAll()
+    todosProfissionais.push(profissional)
+    fs.writeFileSync(PROFISSIONAL_REPOSITORY, JSON.stringify(todosProfissionais, null, 2));
+}
 
-function updateProfissional(profissional, id){}
+function updateProfissional(profissional, id){
+    const todosProfissionais = getAll();
+    const index = todosProfissionais.findIndex(p => p._id === id);
+    if (index !== -1) {
+        Object.assign(todosProfissionais[index], profissional);
+        fs.writeFileSync(PROFISSIONAL_REPOSITORY, JSON.stringify(todosProfissionais, null, 2));
+    } else {
+        throw new Error(`Profissional com ID ${id} não encontrado.`);
+    }
+}
 
 function deleteById(id){
     let profissionais = getAll()
-    const profissionaisFiltradas = profissionais.filter(profissional => profissional._id !== Number(id));
-    fs.writeFileSync(PROFISSIONAL_REPOSITORY, JSON.stringify(profissionaisFiltradas))    
+    const profissionaisFiltradas = profissionais.filter(profissional => profissional._id !== id);
+    fs.writeFileSync(PROFISSIONAL_REPOSITORY, JSON.stringify(profissionaisFiltradas, null, 2))    
 }
 
 module.exports = { 

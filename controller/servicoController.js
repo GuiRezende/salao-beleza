@@ -22,9 +22,24 @@ function getServico(req, res) {
 }
 
 function postServico(req, res) {
+    try {
+        const body = req.body
+        insertServico(body)
+        res.send("Servico inserido com sucesso")
+    } catch (error) {
+        res.status(500)
+        res.send("ERRO AO INSERIR SERVICO: " + error.message)
+    }
 }
 
 function patchServico(req, res) {
+    try {
+        updateServico(req.body, req.params.id)
+        res.send("Servico atualizado com sucesso")
+    } catch (error) {
+        res.status(500)
+        res.send("ERRO AO ATUALIZAR SERVICO: " + error.message)
+    }
 }
 
 function deleteServico(req, res) {

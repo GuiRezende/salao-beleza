@@ -11,9 +11,22 @@ function getAgendamentoById(id) {
     return agendamentos.filter(agendamento => agendamento._id === Number(id));
 }
 
-function insertAgendamento(agendamento) { }
+function insertAgendamento(agendamento) {
+    const todosAgendamentos = getAll()
+    todosAgendamentos.push(agendamento)
+    fs.writeFileSync(AGENDAMENTO_REPOSITORY, JSON.stringify(todosAgendamentos))
+ }
 
-function updateAgendamento(agendamento, id) { }
+function updateAgendamento(agendamento, id) {
+    const todosAgendamentos = getAll();
+    const index = todosAgendamentos.findIndex(a => a._id === Number(id));
+    if (index !== -1) {
+        Object.assign(todosAgendamentos[index], agendamento);
+        fs.writeFileSync(AGENDAMENTO_REPOSITORY, JSON.stringify(todosAgendamentos, null, 2)); // Adicionei indentação para legibilidade
+    } else {
+        throw new Error(`Agendamento com ID ${id} não encontrado.`);
+    }
+}
 
 function deleteById(id) {
     let agendamentos = getAll()

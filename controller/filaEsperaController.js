@@ -22,9 +22,24 @@ function getFilaEspera(req, res) {
 }
 
 function postFilaEspera(req, res) {
+    try {
+        const body = req.body
+        insertFilaEspera(body)
+        res.send("Fila de Espera inserida com sucesso")
+    } catch (error) {
+        res.status(500)
+        res.send("ERRO AO INSERIR FILA DE ESPERA: " + error.message)
+    }
 }
 
 function patchFilaEspera(req, res) {
+    try {
+        updateFilaEspera(req.body, req.params.id)
+        res.send("Fila de espera atualizada com sucesso")
+    } catch (error) {
+        res.status(500)
+        res.send("ERRO AO ATUALIZAR FILA DE ESPERA: " + error.message)
+    }
 }
 
 function deleteFilaEspera(req, res) {

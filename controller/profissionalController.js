@@ -22,9 +22,24 @@ function getProfissional(req, res) {
 }
 
 function postProfissional(req, res) {
+    try {
+        const body = req.body
+        insertProfissional(body)
+        res.send("Profissional inserido com sucesso")
+    } catch (error) {
+        res.status(500)
+        res.send("ERRO AO INSERIR PROFISSIONAL: " + error.message)
+    }
 }
 
 function patchProfissional(req, res) {
+    try {
+        updateProfissional(req.body, req.params.id)
+        res.send("Profissional atualizado com sucesso")
+    } catch (error) {
+        res.status(500)
+        res.send("ERRO AO ATUALIZAR PROFISSIONAL: " + error.message)
+    }
 }
 
 function deleteProfissional(req, res) {
