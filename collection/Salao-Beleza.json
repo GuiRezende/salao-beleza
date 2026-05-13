@@ -1,0 +1,836 @@
+{
+  "info": {
+    "name": "Salao-Beleza",
+    "description": null,
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "AGENDAMENTO",
+      "item": [
+        {
+          "name": "AGENDAMENTO BY ID",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/agendamento/:id",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "agendamento",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "502"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_id\": \"33333333333\",\n  \"salario\": 2800.00,\n  \"endereco\": \"Rua C, Recreio, Vit�ria da Conquista\",\n  \"telefone\": \"77-98888-0003\",\n  \"especializacao\": \"Manicure\",\n  \"nome\": \"Carla Souza\",\n  \"servicosHabilitados\": [\n    {\n      \"_id\": 3,\n      \"nomeTipo\": \"Manicure\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE AGENDAMENTO",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/agendamento/504",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "agendamento",
+                "504"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"_id\": 501,\n    \"status\": \"realizado\",\n    \"dataHorarioInicial\": \"2025-07-15 09:00:00\",\n    \"dataHorarioFinal\": \"2025-07-15 09:50:00\",\n    \"dataSolicitacao\": \"2025-07-10\",\n    \"valorTotal\": 55,\n    \"codPagamento\": 5,\n    \"formaPagamento\": \"CARTAO\",\n    \"cliente\": {\n      \"_id\": \"77777777777\",\n      \"nome\": \"Gabriela Martins\",\n      \"telefone\": \"77-9999-1001\"\n    },\n    \"servicos\": [\n      {\n        \"tempoDuracao\": \"00:50:00\",\n        \"servicos\": {\n          \"_id\": 1,\n          \"nomeTipo\": \"Corte\",\n          \"custoServico\": 30\n        },\n        \"profissional\": {\n          \"_id\": \"11111111111\",\n          \"nome\": \"Ana Silva\",\n          \"telefone\": \"77-98888-0001\"\n        }\n      }\n    ]\n  },\n  {\n    \"_id\": 502,\n    \"status\": \"realizado\",\n    \"dataHorarioInicial\": \"2025-07-15 09:00:00\",\n    \"dataHorarioFinal\": \"2025-07-15 09:50:00\",\n    \"dataSolicitacao\": \"2025-07-10\",\n    \"valorTotal\": 55,\n    \"codPagamento\": 5,\n    \"formaPagamento\": \"CARTAO\",\n    \"cliente\": {\n      \"_id\": \"77777777777\",\n      \"nome\": \"Gabriela Martins\",\n      \"telefone\": \"77-9999-1001\"\n    },\n    \"servicos\": [\n      {\n        \"tempoDuracao\": \"00:50:00\",\n        \"servicos\": {\n          \"_id\": 1,\n          \"nomeTipo\": \"Corte\",\n          \"custoServico\": 30\n        },\n        \"profissional\": {\n          \"_id\": \"11111111111\",\n          \"nome\": \"Ana Silva\",\n          \"telefone\": \"77-98888-0001\"\n        }\n      }\n    ]\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "INSERT AGENDAMENTO",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/agendamento/",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "agendamento",
+                ""
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": " {\n    \"_id\": 504,\n    \"status\": \"realizado\",\n    \"dataHorarioInicial\": \"2025-07-15 09:00:00\",\n    \"dataHorarioFinal\": \"2025-07-15 09:50:00\",\n    \"dataSolicitacao\": \"2025-07-10\",\n    \"valorTotal\": 55,\n    \"codPagamento\": 5,\n    \"formaPagamento\": \"CARTAO\",\n    \"cliente\": {\n      \"_id\": \"77777777777\",\n      \"nome\": \"Josefina Martins\",\n      \"telefone\": \"77-9999-1001\"\n    },\n    \"servicos\": [\n      {\n        \"tempoDuracao\": \"00:50:00\",\n        \"servicos\": {\n          \"_id\": 1,\n          \"nomeTipo\": \"Lavagem\",\n          \"custoServico\": 30\n        },\n        \"profissional\": {\n          \"_id\": \"11111111111\",\n          \"nome\": \"Ana Silva\",\n          \"telefone\": \"77-98888-0001\"\n        }\n      }\n    ]\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "LISTAR AGENDAMENTOS",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/agendamento",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "agendamento"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "UPDATE AGENDAMENTO",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/agendamento/:id",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "agendamento",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "502"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_id\": 502,\n  \"status\": \"realizado\",\n  \"dataHorarioInicial\": \"2025-07-15 09:00:00\",\n  \"dataHorarioFinal\": \"2025-07-15 10:40:00\",\n  \"dataSolicitacao\": \"2025-07-10\",\n  \"valorTotal\": 55,\n  \"codPagamento\": 5,\n  \"formaPagamento\": \"A VISTA\",\n  \"cliente\": {\n    \"_id\": \"77777777777\",\n    \"nome\": \"Gabriela Martins\",\n    \"telefone\": \"77-9999-1001\"\n  },\n  \"servicos\": [\n    {\n      \"tempoDuracao\": \"00:50:00\",\n      \"servicos\": {\n        \"_id\": 1,\n        \"nomeTipo\": \"Corte\",\n        \"custoServico\": 30\n      },\n      \"profissional\": {\n        \"_id\": \"11111111111\",\n        \"nome\": \"Ana Silva\",\n        \"telefone\": \"77-98888-0001\"\n      }\n    },\n    {\n      \"tempoDuracao\": \"00:50:00\",\n      \"servicos\": {\n        \"_id\": 1,\n        \"nomeTipo\": \"Pintura\",\n        \"custoServico\": 70\n      },\n      \"profissional\": {\n        \"_id\": \"11111111111\",\n        \"nome\": \"Josefina\",\n        \"telefone\": \"77-98888-0001\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "CLIENTE",
+      "item": [
+        {
+          "name": "CLIENTE BY ID",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/cliente/00000000005",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "cliente",
+                "00000000005"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": \"1\",\n    \"idLivroFavorito\": \"1\",\n    \"nomeLivro\": \"Harry Potter\",\n    \"categoria\": \"ficcao\"\n  },\n  {\n    \"id\": \"2\",\n    \"idLivroFavorito\": \"5\",\n    \"nomeLivro\": \"Como vencer seus medos\",\n    \"categoria\": \"ficcao\"\n  },\n  {\n    \"id\": \"3\",\n    \"idLivroFavorito\": \"3\",\n    \"nomeLivro\": \"Um amor para recordar\",\n    \"categoria\": \"romance\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE CLIENTE",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/cliente/:id",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "cliente",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "00000000005"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"_id\": \"00000000000\",\n    \"telefone\": \"77-9999-1004\",\n    \"dataNascimento\": \"1999-02-14\",\n    \"nome\": \"Joana Fernandes\",\n    \"endereco\": {\n      \"cep\": \"45000-030\",\n      \"uf\": \"BA\",\n      \"bairro\": \"Jurema\",\n      \"logradouro\": \"Trav. Laranjeiras\",\n      \"cidade\": \"Vit�ria da Conquista\",\n      \"numero\": \"400\"\n    }\n  },\n  {\n    \"_id\": \"00000000005\",\n    \"telefone\": \"77-99123-1004\",\n    \"dataNascimento\": \"1999-02-14\",\n    \"nome\": \"Joana Fernandes\",\n    \"endereco\": {\n      \"cep\": \"45000-030\",\n      \"uf\": \"BA\",\n      \"bairro\": \"Jurema\",\n      \"logradouro\": \"Trav. Laranjeiras\",\n      \"cidade\": \"Vit�ria da Conquista\",\n      \"numero\": \"400\"\n    }\n  },\n  {\n    \"_id\": \"12300000005\",\n    \"telefone\": \"77-99123-1004\",\n    \"dataNascimento\": \"1999-02-14\",\n    \"nome\": \"Joana Fernandes\",\n    \"endereco\": {\n      \"cep\": \"45000-030\",\n      \"uf\": \"BA\",\n      \"bairro\": \"Jurema\",\n      \"logradouro\": \"Trav. Laranjeiras\",\n      \"cidade\": \"Vit�ria da Conquista\",\n      \"numero\": \"400\"\n    }\n  },\n  {\n    \"_id\": \"12340000005\",\n    \"telefone\": \"77-99123-1004\",\n    \"dataNascimento\": \"1999-02-14\",\n    \"nome\": \"Joana Fernandes\",\n    \"endereco\": {\n      \"cep\": \"45000-030\",\n      \"uf\": \"BA\",\n      \"bairro\": \"Jurema\",\n      \"logradouro\": \"Trav. Laranjeiras\",\n      \"cidade\": \"Vit�ria da Conquista\",\n      \"numero\": \"400\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "INSERT CLIENTE",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/cliente/",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "cliente",
+                ""
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_id\": \"12340000005\",\n  \"telefone\": \"77-99123-1004\",\n  \"dataNascimento\": \"1999-02-14\",\n  \"nome\": \"Joana Fernandes\",\n  \"endereco\": {\n    \"cep\": \"45000-030\",\n    \"uf\": \"BA\",\n    \"bairro\": \"Jurema\",\n    \"logradouro\": \"Trav. Laranjeiras\",\n    \"cidade\": \"Vit�ria da Conquista\",\n    \"numero\": \"400\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "LISTAR CLIENTES",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/cliente",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "cliente"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "UPDATE CLIENTE",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/cliente/:id",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "cliente",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "00000000000"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "\n  {\n    \"_id\": \"00000000000\",\n    \"telefone\": \"77-8888-1004\",\n    \"dataNascimento\": \"1999-02-14\",\n    \"nome\": \"Joana Fernandes\",\n    \"endereco\": {\n      \"cep\": \"45000-030\",\n      \"uf\": \"BA\",\n      \"bairro\": \"Jurema\",\n      \"logradouro\": \"Trav. Laranjeiras\",\n      \"cidade\": \"Vit�ria da Conquista\",\n      \"numero\": \"400\"\n    }\n  }\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "FILA-ESPERA",
+      "item": [
+        {
+          "name": "DELETE FILA-ESPERA",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/fila-espera/:id",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "fila-espera",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "301"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "FILA-ESPERA BY ID",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/fila-espera/2",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "fila-espera",
+                "2"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": \"1\",\n    \"idLivroFavorito\": \"1\",\n    \"nomeLivro\": \"Harry Potter\",\n    \"categoria\": \"ficcao\"\n  },\n  {\n    \"id\": \"2\",\n    \"idLivroFavorito\": \"5\",\n    \"nomeLivro\": \"Como vencer seus medos\",\n    \"categoria\": \"ficcao\"\n  },\n  {\n    \"id\": \"3\",\n    \"idLivroFavorito\": \"3\",\n    \"nomeLivro\": \"Um amor para recordar\",\n    \"categoria\": \"romance\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "INSERT FILA-ESPERA",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/fila-espera/",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "fila-espera",
+                ""
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"1\",\n  \"nome\": \"Livro irado demais\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "LISTAR FILAS",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/fila-espera",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "fila-espera"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "UPDATE FILA-ESPERA",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/fila-espera/:id",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "fila-espera",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "201"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "  {\n    \"_id\": 201,\n    \"status\": \"CANCELADO\",\n    \"dataHoraSolicitacao\": \"2025-07-15 08:45:00\",\n    \"cliente\": {\n      \"_id\": \"77777777777\",\n      \"nome\": \"Gabriela Martins\",\n      \"telefone\": \"77-9999-1001\"\n    },\n    \"servicos\": [\n      {\n        \"_id\": 1,\n        \"nomeTipo\": \"Corte\",\n        \"tempoDuracao\": \"00:30:00\",\n        \"custoServico\": 30\n      }\n    ]\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "PROFISSIONAL",
+      "item": [
+        {
+          "name": "DELETE PROFISSIONAL",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/profissional/:id",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "profissional",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "11111121111"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "INSERT PROFISSIONAL",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/profissional/",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "profissional",
+                ""
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_id\": \"41111111111\",\n  \"salario\": 2500,\n  \"endereco\": \"Rua A, Centro, Vit�ria da Conquista\",\n  \"telefone\": \"77-98888-0001\",\n  \"especializacao\": \"Corte\",\n  \"nome\": \"Ana Silva\",\n  \"servicosHabilitados\": [\n    {\n      \"_id\": 1,\n      \"nomeTipo\": \"Corte\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "LISTAR PROFISSIONAIS",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/profissional",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "profissional"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "PROFISSIONAL BY ID",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/profissional/11111111111",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "profissional",
+                "11111111111"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": \"1\",\n    \"idLivroFavorito\": \"1\",\n    \"nomeLivro\": \"Harry Potter\",\n    \"categoria\": \"ficcao\"\n  },\n  {\n    \"id\": \"2\",\n    \"idLivroFavorito\": \"5\",\n    \"nomeLivro\": \"Como vencer seus medos\",\n    \"categoria\": \"ficcao\"\n  },\n  {\n    \"id\": \"3\",\n    \"idLivroFavorito\": \"3\",\n    \"nomeLivro\": \"Um amor para recordar\",\n    \"categoria\": \"romance\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "UPDATE FAVORITOS",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/profissional/:id",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "profissional",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "41111111111"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_id\": \"41111111111\",\n  \"salario\": 2500,\n  \"endereco\": \"Rua A, Centro, Vit�ria da Conquista\",\n  \"telefone\": \"77-98888-0001\",\n  \"especializacao\": \"Corte\",\n  \"nome\": \"Ana Silva\",\n  \"servicosHabilitados\": [\n    {\n      \"_id\": 1,\n      \"nomeTipo\": \"Corte\"\n    },\n    {\n      \"_id\": 10,\n      \"nomeTipo\": \"Barba\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "SERVICO",
+      "item": [
+        {
+          "name": "DELETE SERVICOS",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/servico/:id",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "servico",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "3"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "INSERT SERVICO",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/servico/",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "servico",
+                ""
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_id\": 11,\n  \"nomeTipo\": \"Tintura\",\n  \"custoServico\": 30,\n  \"tempoDuracao\": \"00:30:00\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "LISTAR SERVICOS",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/servico",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "servico"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "SERVICO BY ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/servico/11",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "servico",
+                "11"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "UPDATE SERVICO",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/servico/:id",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "servico",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "11"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"_id\": 11,\n    \"nomeTipo\": \"Tintura degrade\",\n    \"custoServico\": 300,\n    \"tempoDuracao\": \"00:30:00\"\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": []
+}
