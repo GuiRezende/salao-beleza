@@ -13,7 +13,7 @@ async function getServicoById(id) {
 
 async function getServicoByNome(nome) {
     return await Servico.find({
-        nome: { $regex: nome, $options: 'i' }
+        nomeTipo: { $regex: nome, $options: 'i' }
     })
 }
 
