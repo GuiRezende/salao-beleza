@@ -7,7 +7,8 @@ async function getAll() {
 }
 
 async function getPagamentoById(id) {
-    const pagamento = await Pagamento.findById(id)
+    console.log("ID recebido para consulta:", id)
+    const pagamento = await Pagamento.findById(id.toString())
     return pagamento
 }
 

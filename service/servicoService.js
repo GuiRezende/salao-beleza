@@ -11,6 +11,12 @@ async function getServicoById(id) {
     return servicoEncontrado;
 }
 
+async function getServicoByNome(nome) {
+    return await Servico.find({
+        nome: { $regex: nome, $options: 'i' }
+    })
+}
+
 async function insertServico(novoServico) {
     const servicoCriado = await Servico.create(novoServico);
     return servicoCriado;
@@ -29,6 +35,7 @@ async function deleteById(id) {
 export { 
     getAll, 
     getServicoById, 
+    getServicoByNome,
     insertServico, 
     updateServico, 
     deleteById

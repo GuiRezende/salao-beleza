@@ -1,4 +1,4 @@
-import { getAll, getServicoById, insertServico, updateServico, deleteById } from "../service/servicoService.js"
+import { getAll, getServicoById, getServicoByNome, insertServico, updateServico, deleteById } from "../service/servicoService.js"
 
 async function getServicos(req, res) {
     try {
@@ -14,6 +14,17 @@ async function getServico(req, res) {
     try {
         const id = req.params.id
         const servico = await getServicoById(id)
+        res.send(servico)
+    } catch (error) {
+        res.status(500)
+        res.send("ERRO AO CONSULTAR SERVICO: " + error.message)
+    }
+}
+
+async function getServicoPorNome(req, res) {
+    try {
+        const nome = req.params.nome
+        const servico = await getServicoByNome(nome)
         res.send(servico)
     } catch (error) {
         res.status(500)
@@ -56,6 +67,7 @@ async function deleteServico(req, res) {
 export {
     getServicos,
     getServico,
+    getServicoPorNome,
     postServico,
     patchServico,
     deleteServico

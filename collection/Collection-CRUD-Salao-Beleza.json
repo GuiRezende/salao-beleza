@@ -106,7 +106,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": " {\n    \"_id\": 504,\n    \"status\": \"realizado\",\n    \"dataHorarioInicial\": \"2025-07-15 09:00:00\",\n    \"dataHorarioFinal\": \"2025-07-15 09:50:00\",\n    \"dataSolicitacao\": \"2025-07-10\",\n    \"valorTotal\": 55,\n    \"codPagamento\": 5,\n    \"formaPagamento\": \"CARTAO\",\n    \"cliente\": {\n      \"_id\": \"77777777777\",\n      \"nome\": \"Josefina Martins\",\n      \"telefone\": \"77-9999-1001\"\n    },\n    \"servicos\": [\n      {\n        \"tempoDuracao\": \"00:50:00\",\n        \"servicos\": {\n          \"_id\": 1,\n          \"nomeTipo\": \"Lavagem\",\n          \"custoServico\": 30\n        },\n        \"profissional\": {\n          \"_id\": \"11111111111\",\n          \"nome\": \"Ana Silva\",\n          \"telefone\": \"77-98888-0001\"\n        }\n      }\n    ]\n  }",
+              "raw": "{\n  \"dataHoraInicio\": \"2025-07-15T09:00:00.000Z\",\n  \"dataHoraFim\": \"2025-07-15T10:45:00.000Z\",\n  \"dataSolicitacao\": \"2025-07-10T14:00:00.000Z\",\n  \"status\": \"REALIZADO\",\n  \"valorTotal\": 80,\n  \"cliente_id\": \"6a1ae8a645db3aba580664e3\",\n  \"servicos\": [\n    {\n      \"tempoDuracao\": 60,\n      \"servico_id\": \"6a1aed89f956f7f634dc10c6\",\n      \"profissional_id\": \"6a1aec5919c41af6d1f95e6e\"\n    },\n    {\n      \"tempoDuracao\": 45,\n      \"servico_id\": \"6a1aedabf956f7f634dc10c8\",\n      \"profissional_id\": \"6a1aec5919c41af6d1f95e6e\"\n    }\n  ],\n  \"statusPagamento\": \"PAGO\",\n  \"pagamento_id\": \"6a1af153f96bcaaf9264fd19\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -279,7 +279,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"_id\": \"12340000005\",\n  \"telefone\": \"77-99123-1004\",\n  \"dataNascimento\": \"1999-02-14\",\n  \"nome\": \"Joana Fernandes\",\n  \"endereco\": {\n    \"cep\": \"45000-030\",\n    \"uf\": \"BA\",\n    \"bairro\": \"Jurema\",\n    \"logradouro\": \"Trav. Laranjeiras\",\n    \"cidade\": \"Vit�ria da Conquista\",\n    \"numero\": \"400\"\n  }\n}",
+              "raw": "{\n  \"cpf\": \"12300000011\",\n  \"nome\": \"Patrícia Gomes Ferreira\",\n  \"telefone\": \"77-99123-1010\",\n  \"dataNascimento\": \"1991-07-14\",\n  \"endereco\": {\n    \"cidade\": \"Vitória da Conquista\",\n    \"estado\": \"BA\",\n    \"cep\": \"45000-630\",\n    \"logradouro\": \"Rua dos Ipês\",\n    \"numero\": \"302\"\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -346,6 +346,36 @@
                   "language": "json"
                 }
               }
+            }
+          }
+        },
+        {
+          "name": "CLIENTE by NOME",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/cliente/nome/:nome",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "cliente",
+                "nome",
+                ":nome"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "nome",
+                  "value": "Joana"
+                }
+              ]
             }
           }
         }
@@ -571,7 +601,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"_id\": \"41111111111\",\n  \"salario\": 2500,\n  \"endereco\": \"Rua A, Centro, Vit�ria da Conquista\",\n  \"telefone\": \"77-98888-0001\",\n  \"especializacao\": \"Corte\",\n  \"nome\": \"Ana Silva\",\n  \"servicosHabilitados\": [\n    {\n      \"_id\": 1,\n      \"nomeTipo\": \"Corte\"\n    }\n  ]\n}",
+              "raw": "{\n  \"cpf\": \"33333333333\",\n  \"nome\": \"Marcos Oliveira\",\n  \"telefone\": \"77-98888-0003\",\n  \"especialidade\": \"Barbeiro\",\n  \"salario\": 2900,\n  \"endereco\": {\n    \"cidade\": \"Vitória da Conquista\",\n    \"estado\": \"BA\",\n    \"cep\": \"45000-340\",\n    \"logradouro\": \"Rua São José\",\n    \"numero\": \"88\"\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -705,7 +735,7 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "3"
+                  "value": "6a1aedabf956f7f634dc10c8"
                 }
               ]
             }
@@ -735,7 +765,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"_id\": 11,\n  \"nomeTipo\": \"Tintura\",\n  \"custoServico\": 30,\n  \"tempoDuracao\": \"00:30:00\"\n}",
+              "raw": "{\n  \"nomeTipo\": \"Coloração\",\n  \"valor\": 120,\n  \"tempoDuracao\": 120\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -777,14 +807,14 @@
             },
             "description": "",
             "url": {
-              "raw": "http://localhost:8000/servico/11",
+              "raw": "http://localhost:8000/servico/6a1aedabf956f7f634dc10c8",
               "protocol": "http",
               "host": [
                 "localhost:8000"
               ],
               "path": [
                 "servico",
-                "11"
+                "6a1aedabf956f7f634dc10c8"
               ],
               "query": [],
               "variable": []
@@ -793,6 +823,158 @@
         },
         {
           "name": "UPDATE SERVICO",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/servico/:id",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "servico",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "11"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"_id\": 11,\n    \"nomeTipo\": \"Tintura degrade\",\n    \"custoServico\": 300,\n    \"tempoDuracao\": \"00:30:00\"\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "PAGAMENTO",
+      "item": [
+        {
+          "name": "DELETE PAGAMENTO",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/pagamento/:id",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pagamento",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "3"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "INSERT PAGAMENTO",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/pagamento/",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pagamento",
+                ""
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codPagamento\": 6,\n  \"formaPagamento\": \"BOLETO\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "LISTAR PAGAMENTOS",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/pagamento",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pagamento"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "PAGAMENTO BY ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8000/pagamento/6a1af169f96bcaaf9264fd1b",
+              "protocol": "http",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pagamento",
+                "6a1af169f96bcaaf9264fd1b"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "UPDATE PAGAMENTO",
           "request": {
             "method": "PATCH",
             "header": [],

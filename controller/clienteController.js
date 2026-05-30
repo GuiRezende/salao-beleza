@@ -1,4 +1,4 @@
-import { getAll, getClienteById, insertCliente, updateCliente, deleteById } from "../service/clienteService.js"
+import { getAll, getClienteById, getClienteByNome, insertCliente, updateCliente, deleteById } from "../service/clienteService.js"
 
 async function getClientes(req, res) {
     try {
@@ -14,6 +14,18 @@ async function getCliente(req, res) {
     try {
         const id = req.params.id
         const cliente = await getClienteById(id)
+        res.send(cliente)
+    } catch (error) {
+        res.status(500)
+        res.send("ERRO AO CONSULTAR CLIENTE: " + error.message)
+    }
+}
+
+async function getClientePorNome(req, res) {
+    try {
+        const nome = req.params.nome
+        const cliente = await getClienteByNome(nome)
+        console.log(cliente)
         res.send(cliente)
     } catch (error) {
         res.status(500)
@@ -56,6 +68,7 @@ async function deleteCliente(req, res) {
 
 export {
     getClientes,
+    getClientePorNome,
     getCliente,
     postCliente,
     patchCliente,

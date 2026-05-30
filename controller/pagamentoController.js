@@ -10,10 +10,11 @@ async function getPagamentos(req, res) {
     }
 }
 
-function getPagamento(req, res) {
+async function getPagamento(req, res) {
     try {
         const id = req.params.id
-        const pagamento = getPagamentoById(id)
+        const pagamento = await getPagamentoById(id)
+        console.log(pagamento)
         res.send(pagamento)
     } catch (error) {
         res.status(500)

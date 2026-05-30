@@ -12,6 +12,12 @@ async function getClienteById(id) {
     return clienteEncontrado;
 }
 
+async function getClienteByNome(nome) {
+    return await Cliente.find({
+        nome: { $regex: nome, $options: 'i' }
+    })
+}
+
 async function insertCliente(novoCliente) {
   const { endereco: dadosEndereco, ...dadosCliente } = novoCliente
 
@@ -56,6 +62,7 @@ async function deleteById(id) {
 export {
     getAll,
     getClienteById,
+    getClienteByNome,
     insertCliente,
     updateCliente,
     deleteById
