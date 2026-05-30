@@ -1,6 +1,6 @@
-const { Router } = require("express")
+import { Router } from "express"
 const router = Router()
-const { getFilaEsperas, getFilaEspera, postFilaEspera, patchFilaEspera, deleteFilaEspera } = require("../controller/filaEsperaController")
+import { getFilaEsperas, getFilaEspera, postFilaEspera, patchFilaEspera, deleteFilaEspera } from "../controller/filaEsperaController.js"
 
 router.get('/', getFilaEsperas)
 router.get('/:id', getFilaEspera)
@@ -8,4 +8,4 @@ router.post('/', postFilaEspera)
 router.patch('/:id', patchFilaEspera)
 router.delete('/:id', deleteFilaEspera)
 
-module.exports = router
+export default router

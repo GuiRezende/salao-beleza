@@ -1,40 +1,59 @@
-const fs = require("fs")
-const CLIENTE_REPOSITORY = "./repository/clienteRepository.json"
+import fs from "fs"
+import Cliente from '../model/Cliente.js'
+import Endereco from '../model/Endereco.js'
 
-
-function getAll() {
-    return JSON.parse(fs.readFileSync("./repository/clienteRepository.json"))
+async function getAll() {
+    const listaClientes = await Cliente.find({});
+    return listaClientes;
 }
 
-function getClienteById(id) {
-    const clientes = getAll()
-    return clientes.filter(cliente => cliente._id === id);
+async function getClienteById(id) {
+    const clienteEncontrado = await Cliente.findById(id);
+    return clienteEncontrado;
 }
 
-function insertCliente(cliente) {
-    const todosClientes = getAll()
-    todosClientes.push(cliente)
-    fs.writeFileSync(CLIENTE_REPOSITORY, JSON.stringify(todosClientes, null, 2))
+async function insertCliente(novoCliente) {
+  const { endereco: dadosEndereco, ...dadosCliente } = novoCliente
+
+  const enderecoCriado = await Endereco.create(dadosEndereco)
+
+  const clienteCriado = await Cliente.create({
+    ...dadosCliente,
+    endereco_id: enderecoCriado._id
+  })
+
+  return clienteCriado
 }
 
-function updateCliente(cliente, id) {
-    const todosClientes = getAll();
-    const index = todosClientes.findIndex(c => c._id === id);
-    if (index !== -1) {
-        Object.assign(todosClientes[index], cliente);
-        fs.writeFileSync(CLIENTE_REPOSITORY, JSON.stringify(todosClientes, null, 2)); // Adicionei indentação para legibilidade
-    } else {
-        throw new Error(`Cliente com ID ${id} não encontrado.`);
-    }
- }
+async function updateCliente(cpf, dadosAtualizados) {
+  const cliente = await Cliente.findById(cpf)
 
-function deleteById(id) {
-    let clientes = getAll()
-    const clientesFiltrados = clientes.filter(cliente => cliente._id !== id);
-    fs.writeFileSync(CLIENTE_REPOSITORY, JSON.stringify(clientesFiltrados, null, 2))
+  if (!cliente) {
+    throw new Error('Cliente não encontrado')
+  }
+
+  const { endereco, ...dadosCliente } = dadosAtualizados
+
+  if (endereco) {
+    await Endereco.findByIdAndUpdate(
+      cliente.endereco_id,
+      endereco
+    )
+  }
+
+  return await Cliente.findByIdAndUpdate(
+    cpf,
+    dadosCliente,
+    { new: true }
+  )
 }
 
-module.exports = {
+async function deleteById(id) {
+    const clienteDeletado = await cliente.findByIdAndDelete(id);
+    return clienteDeletado;
+}
+
+export {
     getAll,
     getClienteById,
     insertCliente,

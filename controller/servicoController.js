@@ -1,8 +1,8 @@
-const { getAll, getServicoById, insertServico, updateServico, deleteById } = require("../service/servicoService")
+import { getAll, getServicoById, insertServico, updateServico, deleteById } from "../service/servicoService.js"
 
-function getServicos(req, res) {
+async function getServicos(req, res) {
     try {
-        const servicos = getAll()
+        const servicos = await getAll()
         res.send(servicos)
     } catch (error) {
         res.status(500)
@@ -10,10 +10,10 @@ function getServicos(req, res) {
     }
 }
 
-function getServico(req, res) {
+async function getServico(req, res) {
     try {
         const id = req.params.id
-        const servico = getServicoById(id)
+        const servico = await getServicoById(id)
         res.send(servico)
     } catch (error) {
         res.status(500)
@@ -21,31 +21,31 @@ function getServico(req, res) {
     }
 }
 
-function postServico(req, res) {
+async function postServico(req, res) {
     try {
         const body = req.body
-        insertServico(body)
-        res.send("Servico inserido com sucesso")
+        const servico = await insertServico(body)
+        res.send(servico)
     } catch (error) {
         res.status(500)
         res.send("ERRO AO INSERIR SERVICO: " + error.message)
     }
 }
 
-function patchServico(req, res) {
+async function patchServico(req, res) {
     try {
-        updateServico(req.body, req.params.id)
-        res.send("Servico atualizado com sucesso")
+        const servico = await updateServico(req.params.id, req.body)
+        res.send(servico)
     } catch (error) {
         res.status(500)
         res.send("ERRO AO ATUALIZAR SERVICO: " + error.message)
     }
 }
 
-function deleteServico(req, res) {
+async function deleteServico(req, res) {
     try {
         const id = req.params.id
-        deleteById(id)
+        await deleteById(id)
         res.send("Servico deletado(a) com sucesso")
     } catch (error) {
         res.status(500)
@@ -53,7 +53,7 @@ function deleteServico(req, res) {
     }
 }
 
-module.exports = {
+export {
     getServicos,
     getServico,
     postServico,

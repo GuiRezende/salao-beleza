@@ -1,8 +1,8 @@
-const { getAll, getProfissionalById, insertProfissional, updateProfissional, deleteById } = require("../service/profissionalService")
+import { getAll, getProfissionalById, insertProfissional, updateProfissional, deleteById } from "../service/profissionalService.js"
 
-function getProfissionais(req, res) {
+async function getProfissionais(req, res) {
     try {
-        const profissionais = getAll()
+        const profissionais = await getAll()
         res.send(profissionais)
     } catch (error) {
         res.status(500)
@@ -10,10 +10,10 @@ function getProfissionais(req, res) {
     }
 }
 
-function getProfissional(req, res) {
+async function getProfissional(req, res) {
     try {
         const id = req.params.id
-        const profissional = getProfissionalById(id)
+        const profissional = await getProfissionalById(id)
         res.send(profissional)
     } catch (error) {
         res.status(500)
@@ -21,28 +21,28 @@ function getProfissional(req, res) {
     }
 }
 
-function postProfissional(req, res) {
+async function postProfissional(req, res) {
     try {
         const body = req.body
-        insertProfissional(body)
-        res.send("Profissional inserido com sucesso")
+        const profissional = await insertProfissional(body)
+        res.send(profissional)
     } catch (error) {
         res.status(500)
         res.send("ERRO AO INSERIR PROFISSIONAL: " + error.message)
     }
 }
 
-function patchProfissional(req, res) {
+async function patchProfissional(req, res) {
     try {
-        updateProfissional(req.body, req.params.id)
-        res.send("Profissional atualizado com sucesso")
+        const profissional = await updateProfissional(req.params.id, req.body)
+        res.send(profissional)
     } catch (error) {
         res.status(500)
         res.send("ERRO AO ATUALIZAR PROFISSIONAL: " + error.message)
     }
 }
 
-function deleteProfissional(req, res) {
+async function deleteProfissional(req, res) {
     try {
         const id = req.params.id
         deleteById(id)
@@ -53,7 +53,7 @@ function deleteProfissional(req, res) {
     }
 }
 
-module.exports = {
+export {
     getProfissionais,
     getProfissional,
     postProfissional,

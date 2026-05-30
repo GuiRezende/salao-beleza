@@ -1,8 +1,8 @@
-const { getAll, getClienteById, insertCliente, updateCliente, deleteById } = require("../service/clienteService")
+import { getAll, getClienteById, insertCliente, updateCliente, deleteById } from "../service/clienteService.js"
 
-function getClientes(req, res) {
+async function getClientes(req, res) {
     try {
-        const clientes = getAll()
+        const clientes = await getAll()
         res.send(clientes)
     } catch (error) {
         res.status(500)
@@ -10,10 +10,10 @@ function getClientes(req, res) {
     }
 }
 
-function getCliente(req, res) {
+async function getCliente(req, res) {
     try {
         const id = req.params.id
-        const cliente = getClienteById(id)
+        const cliente = await getClienteById(id)
         res.send(cliente)
     } catch (error) {
         res.status(500)
@@ -21,31 +21,32 @@ function getCliente(req, res) {
     }
 }
 
-function postCliente(req, res) {
+async function postCliente(req, res) {
     try {
         const body = req.body
-        insertCliente(body)
-        res.send("Cliente inserido com sucesso")
+        const cliente = await insertCliente(body)
+        res.send(cliente) 
+        console.log("Cliente inserido com sucesso")
     } catch (error) {
         res.status(500)
         res.send("ERRO AO INSERIR CLIENTE: " + error.message)
     }
 }
 
-function patchCliente(req, res) {
+async function patchCliente(req, res) {
     try {
-        updateCliente(req.body, req.params.id)
-        res.send("Cliente atualizado com sucesso")
+        const cliente = await updateCliente(req.params.id, req.body)
+        res.send(cliente)
     } catch (error) {
         res.status(500)
         res.send("ERRO AO ATUALIZAR CLIENTE: " + error.message)
     }
 }
 
-function deleteCliente(req, res) {
+async function deleteCliente(req, res) {
     try {
         const id = req.params.id
-        deleteById(id)
+        await deleteById(id)
         res.send("Cliente deletado com sucesso")
     } catch (error) {
         res.status(500)
@@ -53,7 +54,7 @@ function deleteCliente(req, res) {
     }
 }
 
-module.exports = {
+export {
     getClientes,
     getCliente,
     postCliente,

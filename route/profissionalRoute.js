@@ -1,6 +1,6 @@
-const { Router } = require("express")
+import { Router } from "express"
 const router = Router()
-const { getProfissionais, getProfissional, postProfissional, patchProfissional, deleteProfissional } = require("../controller/profissionalController")
+import { getProfissionais, getProfissional, postProfissional, patchProfissional, deleteProfissional } from "../controller/profissionalController.js"
 
 router.get('/', getProfissionais)
 router.get('/:id', getProfissional)
@@ -8,4 +8,4 @@ router.post('/', postProfissional)
 router.patch('/:id', patchProfissional)
 router.delete('/:id', deleteProfissional)
 
-module.exports = router
+export default router

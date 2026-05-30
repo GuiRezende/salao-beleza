@@ -1,39 +1,32 @@
-const fs = require("fs")
-const SERVICO_REPOSITORY = "./repository/servicoRepository.json"
+import fs from "fs"
+import Servico from "../model/Servico.js"
 
-function getAll() {
-    return JSON.parse(fs.readFileSync(SERVICO_REPOSITORY))
+async function getAll() {
+    const listaServicos = await Servico.find({});
+    return listaServicos;
 }
 
-function getServicoById(id) {
-    const servicos = getAll()
-    return servicos.filter(servico => servico._id === Number(id));
+async function getServicoById(id) {
+    const servicoEncontrado = await Servico.findById(id);
+    return servicoEncontrado;
 }
 
-function insertServico(servico) {
-    const todosServicos = getAll()
-    todosServicos.push(servico)
-    fs.writeFileSync(SERVICO_REPOSITORY, JSON.stringify(todosServicos))
+async function insertServico(novoServico) {
+    const servicoCriado = await Servico.create(novoServico);
+    return servicoCriado;
 }
 
-function updateServico(servico, id){
-    let servicos = getAll()
-    const index = servicos.findIndex(s => s._id === Number(id));
-    if (index !== -1) {
-        Object.assign(servicos[index], servico);
-        fs.writeFileSync(SERVICO_REPOSITORY, JSON.stringify(servicos, null, 2));
-    } else {
-        throw new Error(`Servico com ID ${id} não encontrado.`);
-    }
+async function updateServico(id, servicoAtualizado) {
+    const servicoEncontrado = await Servico.findByIdAndUpdate(id, servicoAtualizado, { new: true });
+    return servicoEncontrado;
 }
 
-function deleteById(id){
-    let servicos = getAll()
-    const servicosFiltrados = servicos.filter(servico => servico._id !== Number(id));
-    fs.writeFileSync(SERVICO_REPOSITORY, JSON.stringify(servicosFiltrados))    
+async function deleteById(id) {
+    const servicoDeletado = await Servico.findByIdAndDelete(id);
+    return servicoDeletado;
 }
 
-module.exports = { 
+export { 
     getAll, 
     getServicoById, 
     insertServico, 

@@ -1,8 +1,8 @@
-const { getAll, getFilaEsperaById, insertFilaEspera, updateFilaEspera, deleteById } = require("../service/filaEsperaService")
+import { getAll, getFilaEsperaById, insertFilaEspera, updateFilaEspera, deleteById } from "../service/filaEsperaService.js"
 
-function getFilaEsperas(req, res) {
+async function getFilaEsperas(req, res) {
     try {
-        const filas = getAll()
+        const filas = await getAll()
         res.send(filas)
     } catch (error) {
         res.status(500)
@@ -10,10 +10,10 @@ function getFilaEsperas(req, res) {
     }
 }
 
-function getFilaEspera(req, res) {
+async function getFilaEspera(req, res) {
     try {
         const id = req.params.id
-        const fila = getFilaEsperaById(id)
+        const fila = await getFilaEsperaById(id)
         res.send(fila)
     } catch (error) {
         res.status(500)
@@ -21,10 +21,10 @@ function getFilaEspera(req, res) {
     }
 }
 
-function postFilaEspera(req, res) {
+async function postFilaEspera(req, res) {
     try {
         const body = req.body
-        insertFilaEspera(body)
+        await insertFilaEspera(body)
         res.send("Fila de Espera inserida com sucesso")
     } catch (error) {
         res.status(500)
@@ -32,9 +32,9 @@ function postFilaEspera(req, res) {
     }
 }
 
-function patchFilaEspera(req, res) {
+async function patchFilaEspera(req, res) {
     try {
-        updateFilaEspera(req.body, req.params.id)
+        const fila = await updateFilaEspera(req.params.id, req.body)
         res.send("Fila de espera atualizada com sucesso")
     } catch (error) {
         res.status(500)
@@ -42,9 +42,10 @@ function patchFilaEspera(req, res) {
     }
 }
 
-function deleteFilaEspera(req, res) {
+async function deleteFilaEspera(req, res) {
     try {
         const id = req.params.id
+        await deleteById(id)
         deleteById(id)
         res.send("Fila de Espera deletada com sucesso")
     } catch (error) {
@@ -53,7 +54,7 @@ function deleteFilaEspera(req, res) {
     }
 }
 
-module.exports = {
+export {
     getFilaEsperas,
     getFilaEspera,
     postFilaEspera,

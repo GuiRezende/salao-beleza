@@ -13,9 +13,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/GuiRezende/salao-beleza/issues"
   },
-  "homepage": "https://github.com/GuiRezende/salao-beleza#readme"
+  "homepage": "https://github.com/GuiRezende/salao-beleza#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "mongoose": "^9.6.3"
+  }
 }

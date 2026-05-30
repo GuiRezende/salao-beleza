@@ -1,39 +1,59 @@
-const fs = require("fs")
-const PROFISSIONAL_REPOSITORY = "./repository/profissionalRepository.json"
+import fs from "fs"
+import Endereco from '../model/Endereco.js'
+import Profissional from '../model/Profissional.js'
 
-function getAll() {
-    return JSON.parse(fs.readFileSync(PROFISSIONAL_REPOSITORY))
+async function getAll() {
+    const listaProfissionais = await Profissional.find({});
+    return listaProfissionais;
 }
 
-function getProfissionalById(id) {
-    const profissionais = getAll()
-    return profissionais.filter(profissional => profissional._id === id);
+async function getProfissionalById(id) {
+    const profissionalEncontrado = await Profissional.findById(id);
+    return profissionalEncontrado;
 }
 
-function insertProfissional(profissional) {
-    const todosProfissionais = getAll()
-    todosProfissionais.push(profissional)
-    fs.writeFileSync(PROFISSIONAL_REPOSITORY, JSON.stringify(todosProfissionais, null, 2));
+async function insertProfissional(novoProfissional) {
+  const { endereco: dadosEndereco, ...dadosProfissional } = novoProfissional
+
+  const enderecoCriado = await Endereco.create(dadosEndereco)
+
+  const profissionalCriado = await Profissional.create({
+    ...dadosProfissional,
+    endereco_id: enderecoCriado._id
+  })
+
+  return profissionalCriado
 }
 
-function updateProfissional(profissional, id){
-    const todosProfissionais = getAll();
-    const index = todosProfissionais.findIndex(p => p._id === id);
-    if (index !== -1) {
-        Object.assign(todosProfissionais[index], profissional);
-        fs.writeFileSync(PROFISSIONAL_REPOSITORY, JSON.stringify(todosProfissionais, null, 2));
-    } else {
-        throw new Error(`Profissional com ID ${id} não encontrado.`);
+async function updateProfissional(id, dadosAtualizados) {
+    const profissional = await Profissional.findById(id)
+
+    if (!profissional) {
+        throw new Error('Profissional não encontrado')
     }
+
+    const { endereco, ...dadosProfissional } = dadosAtualizados
+
+    if (endereco) {
+        await Endereco.findByIdAndUpdate(
+            profissional.endereco_id,
+            endereco
+        )
+    }
+
+    return await Profissional.findByIdAndUpdate(
+        id,
+        dadosProfissional,
+        { new: true }
+    )
 }
 
-function deleteById(id){
-    let profissionais = getAll()
-    const profissionaisFiltradas = profissionais.filter(profissional => profissional._id !== id);
-    fs.writeFileSync(PROFISSIONAL_REPOSITORY, JSON.stringify(profissionaisFiltradas, null, 2))    
+async function deleteById(id) {
+    const profissionalDeletado = await Profissional.findByIdAndDelete(id);
+    return profissionalDeletado;
 }
 
-module.exports = { 
+export { 
     getAll, 
     getProfissionalById, 
     insertProfissional, 

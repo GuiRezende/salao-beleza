@@ -1,8 +1,8 @@
-const { getAll, getAgendamentoById, insertAgendamento, updateAgendamento, deleteById } = require("../service/agendamentoService")
+import { getAll, getAgendamentoById, insertAgendamento, updateAgendamento, deleteById } from "../service/agendamentoService.js"
 
-function getAgendamentos(req, res) {
+async function getAgendamentos(req, res) {
     try {
-        const agendamentos = getAll()
+        const agendamentos = await getAll()
         res.send(agendamentos)
     } catch (error) {
         res.status(500)
@@ -10,9 +10,9 @@ function getAgendamentos(req, res) {
     }
 }
 
-function getAgendamento(req, res) {
+async function getAgendamento(req, res) {
     try {
-        const agendamento = getAgendamentoById(req.params.id)
+        const agendamento = await getAgendamentoById(req.params.id)
         res.send(agendamento)
     } catch (error) {
         res.status(500)
@@ -20,9 +20,9 @@ function getAgendamento(req, res) {
     }
 }
 
-function postAgendamento(req, res) {
+async function postAgendamento(req, res) {
     try {
-        insertAgendamento(req.body)
+        const agendamento = await insertAgendamento(req.body)
         res.send("Agendamento inserido com sucesso")
     } catch (error) {
         res.status(500)
@@ -30,9 +30,9 @@ function postAgendamento(req, res) {
     }
 }
 
-function patchAgendamento(req, res) {
+async function patchAgendamento(req, res) {
     try {
-        updateAgendamento(req.body, req.params.id)
+        const agendamento = await updateAgendamento(req.params.id, req.body)
         res.send("Agendamento atualizado com sucesso")
     } catch (error) {
         res.status(500)
@@ -40,9 +40,9 @@ function patchAgendamento(req, res) {
     }
 }
 
-function deleteAgendamento(req, res) {
+async function deleteAgendamento(req, res) {
     try {
-        deleteById(req.params.id)
+        await deleteById(req.params.id)
         res.send("Agendamento deletado com sucesso")
     } catch (error) {
         res.status(500)
@@ -50,7 +50,7 @@ function deleteAgendamento(req, res) {
     }
 }
 
-module.exports = {
+export {
     getAgendamentos,
     getAgendamento,
     postAgendamento,

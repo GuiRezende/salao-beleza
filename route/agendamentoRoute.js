@@ -1,6 +1,6 @@
-const { Router } = require("express")
+import { Router } from "express"
 const router = Router()
-const { getAgendamentos, getAgendamento, postAgendamento, patchAgendamento, deleteAgendamento } = require("../controller/agendamentoController")
+import { getAgendamentos, getAgendamento, postAgendamento, patchAgendamento, deleteAgendamento } from "../controller/agendamentoController.js"
 
 router.get('/', getAgendamentos)
 router.get('/:id', getAgendamento)
@@ -8,4 +8,4 @@ router.post('/', postAgendamento)
 router.patch('/:id', patchAgendamento)
 router.delete('/:id', deleteAgendamento)
 
-module.exports = router
+export default router

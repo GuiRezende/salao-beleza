@@ -1,40 +1,42 @@
-const fs = require("fs")
-const AGENDAMENTO_REPOSITORY = "./repository/agendamentoRepository.json"
+import fs from "fs"
+import Agendamento from "../model/Agendamento.js"
 
-
-function getAll() {
-    return JSON.parse(fs.readFileSync(AGENDAMENTO_REPOSITORY))
+async function getAll() {
+    const agendamentos = await Agendamento.find()
+    return agendamentos
 }
 
-function getAgendamentoById(id) {
-    const agendamentos = getAll()
-    return agendamentos.filter(agendamento => agendamento._id === Number(id));
+async function getAgendamentoById(id) {
+    const agendamento = await Agendamento.findById(id)
+    return agendamento
 }
 
-function insertAgendamento(agendamento) {
-    const todosAgendamentos = getAll()
-    todosAgendamentos.push(agendamento)
-    fs.writeFileSync(AGENDAMENTO_REPOSITORY, JSON.stringify(todosAgendamentos))
- }
+async function insertAgendamento(novoAgendamento) {
+    console.log("Novo agendamento recebido:", novoAgendamento)
+    const agendamentoCriado = await Agendamento.create(novoAgendamento)
+    return agendamentoCriado
+}
 
-function updateAgendamento(agendamento, id) {
-    const todosAgendamentos = getAll();
-    const index = todosAgendamentos.findIndex(a => a._id === Number(id));
-    if (index !== -1) {
-        Object.assign(todosAgendamentos[index], agendamento);
-        fs.writeFileSync(AGENDAMENTO_REPOSITORY, JSON.stringify(todosAgendamentos, null, 2)); // Adicionei indentação para legibilidade
-    } else {
-        throw new Error(`Agendamento com ID ${id} não encontrado.`);
+async function updateAgendamento(id, dadosAtualizados) {
+    const agendamento = await Agendamento.findById(id)
+
+    if (!agendamento) {
+        throw new Error('Agendamento não encontrado')
     }
+
+    return await Agendamento.findByIdAndUpdate(
+        id,
+        dadosAtualizados,
+        { new: true }
+    )
 }
 
-function deleteById(id) {
-    let agendamentos = getAll()
-    const agendamentosFiltrados = agendamentos.filter(agendamento => agendamento._id !== Number(id));
-    fs.writeFileSync(AGENDAMENTO_REPOSITORY, JSON.stringify(agendamentosFiltrados))
+async function deleteById(id) {
+    const agendamentoDeletado = await Agendamento.findByIdAndDelete(id)
+    return agendamentoDeletado
 }
 
-module.exports = {
+export {
     getAll,
     getAgendamentoById,
     insertAgendamento,

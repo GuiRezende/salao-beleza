@@ -1,5 +1,4 @@
-const fs = require("fs")
-const FILA_ESPERA_REPOSITORY = "./repository/filaEsperaRepository.json"
+import fs from "fs"
 
 
 function getAll() {
@@ -34,7 +33,7 @@ function deleteById(id) {
     fs.writeFileSync(FILA_ESPERA_REPOSITORY, JSON.stringify(filasFiltradas, null, 2));
 }
 
-module.exports = {
+export {
     getAll,
     getFilaEsperaById,
     insertFilaEspera,
