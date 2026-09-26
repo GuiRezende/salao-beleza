@@ -1,55 +1,50 @@
-# Salão Beleza - Backend
+# Salão Beleza
 
-API REST do sistema Salão Beleza, desenvolvida com Node.js e MongoDB.
+Sistema de salão de beleza com frontend em React/Vite e API REST em Node.js/Express, usando MongoDB.
+
+## Telas
+
+| Clientes | Serviços |
+| --- | --- |
+| ![Tela de clientes](docs/screenshots/tela_clientes.png) | ![Tela de serviços](docs/tela_servicos.png) |
+
+| Agenda | Criar agendamento |
+| --- | --- |
+| ![Tela da agenda](docs/screenshots/tela%20agendamento.png) | ![Tela de criação de agendamento](docs/screenshots/Criar%20Agendamento.png) |
 
 ## Pré-requisitos
 
-- Node.js 22 ou superior e npm, para executar pela IDE.
-- Docker Desktop com Docker Compose, para executar em container.
-- Uma instância MongoDB acessível pela aplicação (por exemplo, MongoDB Atlas).
+- Node.js 22 ou superior e npm.
+- Uma instância MongoDB acessível pela API (por exemplo, MongoDB Atlas).
+- Docker Desktop com Docker Compose, caso queira executar a API em container.
 
-## Configuração
+## Executar backend pela IDE
 
-Na raiz do projeto, crie um arquivo `.env` com a string de conexão do MongoDB:
-
-```env
-DB_CONNECTION_STRING=mongodb+srv://<usuario>:<senha>@<cluster>/<database>?retryWrites=true&w=majority
-FRONTEND_URL=http://localhost:5173
-```
-
-Substitua os valores entre `<...>` pelos dados da sua instância. `FRONTEND_URL` é opcional; quando omitida, a API permite por padrão a origem `http://localhost:5173`. Para permitir mais de uma origem, separe as URLs por vírgula.
-
-Não compartilhe nem versione o arquivo `.env`, pois ele pode conter credenciais.
-
-## Executar pela IDE
-
-1. Abra a pasta do projeto na IDE (por exemplo, VS Code).
-2. Crie e preencha o arquivo `.env` conforme a seção de configuração.
-3. Abra o terminal integrado na raiz do projeto e instale as dependências:
+1. Abra a pasta raiz do projeto na IDE (por exemplo, VS Code).
+2. Use o arquivo `.env` fornecido na raiz do projeto; não é necessário configurá-lo manualmente.
+3. No terminal integrado, instale as dependências do backend:
 
    ```bash
    npm ci
    ```
 
-4. Inicie a API em modo de desenvolvimento, com reinicialização automática ao alterar arquivos:
+4. Inicie a API em modo de desenvolvimento:
 
    ```bash
    npm run dev
    ```
 
-   Para executar sem o modo de desenvolvimento, use `npm start`.
+Para executar sem reinicialização automática, use `npm start`. A API fica disponível em `http://localhost:8000`. Mantenha este terminal aberto enquanto usar o frontend e encerre com `Ctrl+C`.
 
-Ao iniciar, a API fica disponível em `http://localhost:8000`. Encerre o processo com `Ctrl+C` no terminal.
+## Executar backend com Docker Compose
 
-## Executar com Docker Compose
-
-Com o Docker Desktop aberto e o arquivo `.env` criado na raiz, execute:
+Com o Docker Desktop aberto e o `.env` fornecido na raiz do projeto, execute a partir da raiz:
 
 ```bash
 docker compose up --build
 ```
 
-O Compose constrói a imagem e inicia a API na porta `8000`. Para iniciar em segundo plano, acrescente `-d`:
+O Compose constrói e inicia a API na porta `8000`. Para iniciar em segundo plano, acrescente `-d`:
 
 ```bash
 docker compose up --build -d
@@ -67,7 +62,30 @@ Para parar e remover o container:
 docker compose down
 ```
 
-O serviço usa o modo de desenvolvimento e monta os arquivos do projeto no container. As alterações são observadas pelo Nodemon.
+O serviço Docker usa o modo de desenvolvimento e observa alterações nos arquivos do backend.
+
+## Executar frontend pela IDE
+
+Abra um segundo terminal integrado na raiz do projeto e entre na pasta do frontend:
+
+```bash
+cd frontend
+npm ci
+npm run dev
+```
+
+O Vite disponibiliza o frontend em `http://localhost:5173`. Mantenha os terminais do frontend e do backend em execução ao mesmo tempo. O frontend chama a API em `http://localhost:8000`, então inicie o backend primeiro.
+
+Opcionalmente, crie `frontend/.env` copiando `frontend/.env.example` e ajuste `VITE_NOME_SALAO` para personalizar o nome exibido. A variável `VITE_API_URL` também está no exemplo, mas ainda não é utilizada pelo código: a URL da API está fixa no frontend em `http://localhost:8000`.
+
+Para gerar a versão de produção do frontend:
+
+```bash
+cd frontend
+npm run build
+```
+
+Os arquivos gerados ficam em `frontend/dist/`.
 
 ## Rotas da API
 
@@ -80,4 +98,4 @@ A URL base local é `http://localhost:8000`. As rotas disponíveis são:
 - `/agendamento`
 - `/pagamento`
 
-Consulte os arquivos da coleção em `collection/Collection-CRUD-Salao-Beleza.json` para exemplos de requisições `GET/POST/PATCH/DELETE`.
+Consulte `collection/Collection-CRUD-Salao-Beleza.json` para exemplos de requisições `GET`, `POST`, `PATCH` e `DELETE`.

@@ -1,0 +1,6 @@
+export { buscarAgenda, criarAgendamento, atualizarAgendamento, excluirAgendamento } from './api/agendamentos.js'
+export { buscarClientes, criarCliente, atualizarCliente, excluirCliente } from './api/clientes.js'
+export { buscarFinanceiro } from './api/financeiro.js'
+export { buscarProfissionais, criarProfissional, atualizarProfissional, excluirProfissional } from './api/profissionais.js'
+export { buscarServicos, criarServico, atualizarServico, excluirServico } from './api/servicos.js'
+export { invalidarCache } from './api/cache.js'
