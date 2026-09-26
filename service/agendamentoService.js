@@ -1,13 +1,20 @@
 import fs from "fs"
-import Agendamento from "../model/Agendamento.js"
+import Agendamento from "../model/agendamento.js"
+
+const CAMPOS_POPULATE = [
+    { path: 'cliente_id' },
+    { path: 'servicos.servico_id' },
+    { path: 'servicos.profissional_id' },
+    { path: 'pagamento_id' }
+]
 
 async function getAll() {
-    const agendamentos = await Agendamento.find()
+    const agendamentos = await Agendamento.find().populate(CAMPOS_POPULATE)
     return agendamentos
 }
 
 async function getAgendamentoById(id) {
-    const agendamento = await Agendamento.findById(id)
+    const agendamento = await Agendamento.findById(id).populate(CAMPOS_POPULATE)
     return agendamento
 }
 

@@ -61,7 +61,7 @@ async function deleteCliente(req, res) {
         await deleteById(id)
         res.send("Cliente deletado com sucesso")
     } catch (error) {
-        res.status(500)
+        res.status(error.status || 500)
         res.send("ERRO AO REMOVER CLIENTE: " + error.message)
     }
 }

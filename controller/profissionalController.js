@@ -45,10 +45,10 @@ async function patchProfissional(req, res) {
 async function deleteProfissional(req, res) {
     try {
         const id = req.params.id
-        deleteById(id)
+        await deleteById(id)
         res.send("Profissional deletado(a) com sucesso")
     } catch (error) {
-        res.status(500)
+        res.status(error.status || 500)
         res.send("ERRO AO REMOVER PROFISSIONAL: " + error.message)
     }
 }

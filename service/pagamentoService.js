@@ -1,5 +1,5 @@
 import fs from "fs"
-import Pagamento from "../model/Pagamento.js"
+import Pagamento from "../model/pagamento.js"
 
 async function getAll() {
     const pagamentos = await Pagamento.find()

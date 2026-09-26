@@ -1,5 +1,5 @@
 import fs from "fs"
-import endereco from "../models/emderec.js";
+import endereco from "../model/endereco.js";
 
 async function getTodosEnderecos() {
     const listaEnderecos = await endereco.find({});

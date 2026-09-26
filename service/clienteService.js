@@ -1,21 +1,22 @@
 import fs from "fs"
-import Cliente from '../model/Cliente.js'
-import Endereco from '../model/Endereco.js'
+import Cliente from '../model/cliente.js'
+import Endereco from '../model/endereco.js'
+import Agendamento from '../model/agendamento.js'
 
 async function getAll() {
-    const listaClientes = await Cliente.find({});
+    const listaClientes = await Cliente.find({}).populate('endereco_id');
     return listaClientes;
 }
 
 async function getClienteById(id) {
-    const clienteEncontrado = await Cliente.findById(id);
+    const clienteEncontrado = await Cliente.findById(id).populate('endereco_id');
     return clienteEncontrado;
 }
 
 async function getClienteByNome(nome) {
     return await Cliente.find({
         nome: { $regex: nome, $options: 'i' }
-    })
+    }).populate('endereco_id')
 }
 
 async function insertCliente(novoCliente) {
@@ -55,7 +56,13 @@ async function updateCliente(cpf, dadosAtualizados) {
 }
 
 async function deleteById(id) {
-    const clienteDeletado = await cliente.findByIdAndDelete(id);
+  const possuiAgendamentos = await Agendamento.exists({ cliente_id: id })
+  if (possuiAgendamentos) {
+    const error = new Error('Este cliente possui agendamentos e não pode ser excluído.')
+    error.status = 409
+    throw error
+  }
+    const clienteDeletado = await Cliente.findByIdAndDelete(id);
     return clienteDeletado;
 }
 

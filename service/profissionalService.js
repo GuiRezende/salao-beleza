@@ -1,14 +1,15 @@
 import fs from "fs"
-import Endereco from '../model/Endereco.js'
-import Profissional from '../model/Profissional.js'
+import Endereco from '../model/endereco.js'
+import Profissional from '../model/profissional.js'
+import Agendamento from '../model/agendamento.js'
 
 async function getAll() {
-    const listaProfissionais = await Profissional.find({});
+    const listaProfissionais = await Profissional.find({}).populate('endereco_id');
     return listaProfissionais;
 }
 
 async function getProfissionalById(id) {
-    const profissionalEncontrado = await Profissional.findById(id);
+    const profissionalEncontrado = await Profissional.findById(id).populate('endereco_id');
     return profissionalEncontrado;
 }
 
@@ -49,6 +50,12 @@ async function updateProfissional(id, dadosAtualizados) {
 }
 
 async function deleteById(id) {
+    const possuiAgendamentos = await Agendamento.exists({ 'servicos.profissional_id': id })
+    if (possuiAgendamentos) {
+        const error = new Error('Este profissional possui agendamentos e não pode ser excluído.')
+        error.status = 409
+        throw error
+    }
     const profissionalDeletado = await Profissional.findByIdAndDelete(id);
     return profissionalDeletado;
 }

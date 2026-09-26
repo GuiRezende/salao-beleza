@@ -17,6 +17,6 @@ const profissionalSchema = new mongoose.Schema(
     }
 );
 
-const Profissional = mongoose.model("profissionais", profissionalSchema)
+const Profissional = mongoose.model("Profissional", profissionalSchema, "profissionais")
 
 export default Profissional

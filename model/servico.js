@@ -8,5 +8,5 @@ const servicoSchema = new mongoose.Schema(
     }
 )
 
-const Servico = mongoose.model("servicos", servicoSchema)
+const Servico = mongoose.model("Servico", servicoSchema, "servicos")
 export default Servico

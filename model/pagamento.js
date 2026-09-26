@@ -7,5 +7,5 @@ const pagamentoSchema = new mongoose.Schema(
     }
 )
 
-const Pagamento = mongoose.model("pagamentos", pagamentoSchema)
+const Pagamento = mongoose.model("Pagamento", pagamentoSchema, "pagamentos")
 export default Pagamento

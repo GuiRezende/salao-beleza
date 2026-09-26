@@ -32,5 +32,5 @@ const agendamentoSchema = new mongoose.Schema(
     }
 );
 
-const Agendamento = mongoose.model("agendamentos", agendamentoSchema)
+const Agendamento = mongoose.model("Agendamento", agendamentoSchema, "agendamentos")
 export default Agendamento

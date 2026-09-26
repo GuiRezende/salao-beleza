@@ -59,7 +59,7 @@ async function deleteServico(req, res) {
         await deleteById(id)
         res.send("Servico deletado(a) com sucesso")
     } catch (error) {
-        res.status(500)
+        res.status(error.status || 500)
         res.send("ERRO AO REMOVER SERVICO: " + error.message)
     }
 }
